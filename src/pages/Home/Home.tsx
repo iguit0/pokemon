@@ -1,30 +1,31 @@
 import { useEffect, useState } from 'react'
 import { useFetchPokemons } from '../../hooks'
-import { Link } from 'react-router-dom'
 
 function Home() {
+  const { loading, pokemons, fetchPokemons } = useFetchPokemons()
   const [limit, setLimit] = useState(10)
-  const { pokemons, loading, error, fetchPokemons } = useFetchPokemons()
 
   useEffect(() => {
     fetchPokemons({ limit })
-  }, [])
+  }, [limit])
+
+  const handleChange = (event) => {
+    setLimit(Number(event.target.value))
+  }
 
   return (
-    <div>
-      {error && <span>{error.message}</span>}
-      {loading && <span>Loading...</span>}
+    <>
+      <input type='number' onChange={handleChange} placeholder='Pokemons per page' />
+      <br />
+      <br />
 
-      {pokemons.map((pokemon) => {
-        const pokemonId = pokemon.url.split('/')[6]
-        return (
-          <Link key={pokemon.name} to={`pokemon/${pokemon.url.split('/')[6]}`}>
-            {pokemonId} - {pokemon.name}
-            <br />
-          </Link>
-        )
-      })}
-    </div>
+      {pokemons.map((pokemon) => (
+        <p style={{ color: '#000' }} key={pokemon.name}>
+          {pokemon.name}
+          <br />
+        </p>
+      ))}
+    </>
   )
 }
 
