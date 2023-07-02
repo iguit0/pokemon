@@ -1,16 +1,13 @@
 import axios from 'axios'
 
-const baseURL = process.env.REACT_APP_API_URL || ''
-
-const DEFAULT_HEADERS = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'Content-Type',
-  'Content-Type': 'application/json',
-}
+const baseURL = process.env.REACT_APP_API_URL
 
 const api = axios.create({
   baseURL,
-  headers: DEFAULT_HEADERS,
 })
+
+api.defaults.headers.common.Accept = 'application/json'
+api.defaults.headers.common['Content-Type'] = 'application/json'
+api.defaults.headers.common.credentials = 'include'
 
 export default api
