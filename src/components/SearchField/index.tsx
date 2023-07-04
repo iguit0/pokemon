@@ -44,7 +44,9 @@ export const SearchField = (props: SearchFieldProps) => {
         onChange={(e) => setInputValue(e.target.value)}
         placeholder='Search by name or ID'
       />
-      {props.error && <C.SearchButton>{<MdClear color='#fff' />}</C.SearchButton>}
+      {props.error && (
+        <C.SearchButton data-testid='search-button'>{<MdClear color='#fff' />}</C.SearchButton>
+      )}
     </C.Container>
   )
 }

@@ -53,6 +53,7 @@ export const SearchBar = (props: SearchBarProps) => {
           }}
           value={limit}
           onChange={handleChangePageSize}
+          data-testid='page-size-select'
         >
           <MenuItem value={'6'}>6</MenuItem>
           <MenuItem value={'12'}>12</MenuItem>
