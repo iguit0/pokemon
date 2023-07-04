@@ -4,7 +4,7 @@ import usePagination from '@mui/material/usePagination'
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs'
 import * as C from './styles'
 
-type UsePaginationProps = {
+export type UsePaginationProps = {
   setPokemonList: (data: Pokemon[]) => void
   setLoading: (value: boolean) => void
   searchBarRef: React.RefObject<HTMLDivElement>

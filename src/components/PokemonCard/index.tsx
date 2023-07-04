@@ -1,13 +1,13 @@
 import { PokemonType } from '../PokemonType'
 import * as C from './styles'
 
-import { pokemonTypes } from '../../pokemonTypes'
 import { Pokemon } from '../../types/pokemon'
 import { SkeletonLoading } from '../../helpers/SkeletonLoading'
 import { IoScaleOutline } from 'react-icons/io5'
 import { RxRulerSquare } from 'react-icons/rx'
 import { FaBolt } from 'react-icons/fa'
 import { fetchPokemon } from '../../services/fetchPokemon'
+import { pokemonTypes } from '../../types/pokemonTypes'
 
 type PokemonCardProps = {
   pokemon: Pokemon

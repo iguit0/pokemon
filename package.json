@@ -45,7 +45,8 @@
       "<rootDir>/src/reportWebVitals.ts",
       "<rootDir>/src/pages",
       "<rootDir>/src/App.tsx",
-      "<rootDir>/src/styles"
+      "<rootDir>/src/styles",
+      "<rootDir>/src/types"
     ],
     "collectCoverageFrom": [
       "<rootDir>/src/**/*.+(js|jsx|ts|tsx)"

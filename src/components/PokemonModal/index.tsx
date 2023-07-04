@@ -1,12 +1,12 @@
 import React from 'react'
 import * as C from './styles'
 import { PokemonType } from '../PokemonType'
-import { pokemonTypes } from '../../pokemonTypes'
 import { SkeletonLoading } from '../../helpers/SkeletonLoading'
 import { ReactComponent as DividerIcon } from '../../assets/divider-pokeball.svg'
-import { IoScaleOutline } from 'react-icons/io5'
+import { IoScaleOutline, IoClose } from 'react-icons/io5'
 import { RxRulerSquare } from 'react-icons/rx'
 import { Pokemon } from '../../types/pokemon'
+import { pokemonTypes } from '../../types/pokemonTypes'
 
 type PokemonModalProps = {
   setModal: (value: boolean) => void
@@ -19,6 +19,8 @@ export const PokemonModal = ({ setModal, pokemonData }: PokemonModalProps) => {
   const [{ color }] = pokemonTypes.filter(
     (type) => pokemonData.types[0].type.name.indexOf(type.name) !== -1,
   )
+
+  const mobile = false
 
   const formatStatName = (statName: string) => {
     switch (statName) {
@@ -43,11 +45,11 @@ export const PokemonModal = ({ setModal, pokemonData }: PokemonModalProps) => {
     else return `#${id}`
   }
 
-  // const renderCloseButton = () => (
-  //   <C.CloseButton onClick={() => setModal(false)} mobile={mobile}>
-  //     <CloseIcon />
-  //   </C.CloseButton>
-  // )
+  const renderCloseButton = () => (
+    <C.CloseButton data-testid='close' onClick={() => setModal(false)} mobile={false}>
+      <IoClose color='#fff' />
+    </C.CloseButton>
+  )
 
   return (
     <C.Wrapper onClick={(e) => e.target === e.currentTarget && setModal(false)}>
@@ -103,9 +105,9 @@ export const PokemonModal = ({ setModal, pokemonData }: PokemonModalProps) => {
           </C.StatsList>
         </C.PokemonStats>
 
-        {/* {!mobile && renderCloseButton()} */}
+        {!mobile && renderCloseButton()}
       </C.Modal>
-      {/* {mobile && renderCloseButton()} */}
+      {mobile && renderCloseButton()}
     </C.Wrapper>
   )
 }

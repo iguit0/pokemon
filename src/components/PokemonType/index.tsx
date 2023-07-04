@@ -1,6 +1,6 @@
 import { SyntheticEvent } from 'react'
-import { pokemonTypes } from '../../pokemonTypes'
 import * as C from './styles'
+import { pokemonTypes } from '../../types/pokemonTypes'
 
 type PokemonTypeProps = {
   type: string
