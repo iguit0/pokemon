@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react'
 import { AxiosError } from 'axios'
 import api from '../services/api'
-import { Pagination, PokemonResponse } from '../services/types'
+import { PokemonResponse } from '../services/types'
 import { Pokemon } from '../types/pokemon'
 
 function useFetchPokemons() {
@@ -12,10 +12,22 @@ function useFetchPokemons() {
     message: '',
   })
 
-  const fetchPokemons = useCallback(async (pagination: Pagination) => {
+  const getPokemonByName = useCallback(async (name: string) => {
     setLoading(true)
     try {
-      const { data } = await api.get<PokemonResponse>(`/pokemon?limit=${pagination.limit}`)
+      const { data } = await api.get(`/pokemon/${name}`)
+      return data
+    } catch (error) {
+      setError({ error: true, message: (error as AxiosError).message })
+    } finally {
+      setLoading(false)
+    }
+  }, [])
+
+  const getAllPokemons = useCallback(async (page: number) => {
+    setLoading(true)
+    try {
+      const { data } = await api.get<PokemonResponse>(`/pokemon?limit=${page}`)
       setPokemons(data.results)
     } catch (error) {
       setError({ error: true, message: (error as AxiosError).message })
@@ -24,7 +36,7 @@ function useFetchPokemons() {
     }
   }, [])
 
-  return { loading, pokemons, error, fetchPokemons }
+  return { loading, pokemons, setLoading, error, getAllPokemons, getPokemonByName }
 }
 
 export default useFetchPokemons

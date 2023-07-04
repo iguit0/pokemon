@@ -1,4 +1,8 @@
-export interface Pokemon {
+export type Pokemon = {
+  id: number
   name: string
-  url: string
+  types: [{ type: { name: string } }]
+  weight: number
+  height: number
+  stats: [{ base_stat: number; stat: { name: string } }]
 }
