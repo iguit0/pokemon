@@ -29,12 +29,12 @@ export const PokemonCard = (props: PokemonCardProps) => {
   }
 
   const handleClick = async () => {
-    const requestPokemon = await fetchPokemon(props.pokemon.name)
+    const { pokeData } = await fetchPokemon(props.pokemon.name)
 
-    if (!requestPokemon.data) {
+    if (!pokeData) {
       return
     }
-    props.setPokemonData(requestPokemon.data)
+    props.setPokemonData(pokeData)
     props.setModal(true)
   }
 
@@ -67,7 +67,7 @@ export const PokemonCard = (props: PokemonCardProps) => {
           <span>Height</span>
         </C.PokemonHeight>
       </C.PokemonFeatures>
-      <C.MoreDetailsButton color={color} onClick={handleClick}>
+      <C.MoreDetailsButton data-testid='more-details' color={color} onClick={handleClick}>
         <FaBolt />
         More Details
       </C.MoreDetailsButton>

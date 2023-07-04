@@ -296,11 +296,11 @@ export const ProgressBarFill = styled.div<{ base_stat: number }>`
   animation: ${progressBar} 2s forwards;
 `
 
-export const CloseButton = styled.button<{ mobile: boolean }>`
+export const CloseButton = styled.button`
   background: none;
   position: absolute;
   top: 1.5rem;
-  right: ${(props) => (props.mobile ? '1rem ' : '1.5rem')};
+  right: '1.5rem';
 
   svg {
     width: 3rem;

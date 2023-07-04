@@ -20,8 +20,6 @@ export const PokemonModal = ({ setModal, pokemonData }: PokemonModalProps) => {
     (type) => pokemonData.types[0].type.name.indexOf(type.name) !== -1,
   )
 
-  const mobile = false
-
   const formatStatName = (statName: string) => {
     switch (statName) {
       case 'hp':
@@ -46,7 +44,7 @@ export const PokemonModal = ({ setModal, pokemonData }: PokemonModalProps) => {
   }
 
   const renderCloseButton = () => (
-    <C.CloseButton data-testid='close' onClick={() => setModal(false)} mobile={false}>
+    <C.CloseButton data-testid='close' onClick={() => setModal(false)}>
       <IoClose color='#fff' />
     </C.CloseButton>
   )
@@ -105,9 +103,8 @@ export const PokemonModal = ({ setModal, pokemonData }: PokemonModalProps) => {
           </C.StatsList>
         </C.PokemonStats>
 
-        {!mobile && renderCloseButton()}
+        {renderCloseButton()}
       </C.Modal>
-      {mobile && renderCloseButton()}
     </C.Wrapper>
   )
 }

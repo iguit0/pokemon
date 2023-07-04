@@ -1,20 +1,16 @@
 import { Pokemon } from '../types/pokemon'
+import api from './api'
 
 export const fetchPokemon = async (pokemon: string) => {
-  const URL = `https://pokeapi.co/api/v2/pokemon/${pokemon}`
-
-  let response
-  let data: Pokemon | null
+  let pokeData: Pokemon | null = null
   let error
 
   try {
-    response = await fetch(URL)
-    data = await response.json()
-    error = false
-  } catch {
-    data = null
-    error = true
+    const { data } = await api.get(`/pokemon/${pokemon}`)
+    pokeData = data
+  } catch (err) {
+    error = err
   }
 
-  return { response, data, error }
+  return { pokeData, error }
 }

@@ -11,8 +11,15 @@ export const SkeletonLoading = ({ src, alt }: SkeletonLoadingProps) => {
 
   return (
     <C.Container skeleton={skeleton}>
-      {skeleton && <C.Skeleton />}
-      <img onLoad={() => setSkeleton(false)} src={src} width='256' height='256' alt={alt} />
+      {skeleton && <C.Skeleton data-testid='skeleton' />}
+      <img
+        onLoad={() => setSkeleton(false)}
+        src={src}
+        width='256'
+        height='256'
+        alt={alt}
+        data-testid='image'
+      />
     </C.Container>
   )
 }

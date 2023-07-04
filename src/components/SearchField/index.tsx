@@ -22,11 +22,9 @@ export const SearchField = (props: SearchFieldProps) => {
     props.setLoading(true)
 
     if (value.toLowerCase()) {
-      const requestPokemon = await fetchPokemon(value.toLowerCase())
+      const { pokeData, error } = await fetchPokemon(value.toLowerCase())
 
-      requestPokemon.data
-        ? props.setPokemonList([requestPokemon.data])
-        : props.setError(requestPokemon.error)
+      pokeData ? props.setPokemonList([pokeData]) : props.setError(error)
     }
 
     if (!value) {
